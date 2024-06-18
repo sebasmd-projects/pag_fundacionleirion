@@ -11,7 +11,10 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOSTS')]
+if ',' in os.getenv('DJANGO_ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS').split(',')
+else:
+    ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOSTS')]
 
 DJANGO_APPS = [
     'django.contrib.admin',
