@@ -33,11 +33,11 @@ class APILogMiddleware:
         """
         response = self.get_response(request)
 
-        logger.warning(f"Referring page {request.META.get('HTTP_REFERER', '')}")
-        logger.warning(f"Origin page {request.META.get('HTTP_ORIGIN', '')}")
-        logger.warning(f"META {request.META}")
-        logger.warning(f"GET {request.GET}")
-        logger.warning(f"POST {request.POST}")
+        # logger.warning(f"Referring page {request.META.get('HTTP_REFERER', '')}")
+        # logger.warning(f"Origin page {request.META.get('HTTP_ORIGIN', '')}")
+        # logger.warning(f"META {request.META}")
+        # logger.warning(f"GET {request.GET}")
+        # logger.warning(f"POST {request.POST}")
 
         if request.path.startswith('/api/') and request.path not in settings.MIDDLEWARE_NOT_INCLUDE:
             self.request_log = RequestLogModel.get_instance()
@@ -65,8 +65,6 @@ class APILogMiddleware:
             _('referring_page'): referring_page,
             _('origin'): origin,
         }
-
-        print(datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S'))
 
         with transaction.atomic():
             self.request_log.add_request_entry(entry)

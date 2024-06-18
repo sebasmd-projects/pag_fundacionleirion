@@ -1,12 +1,17 @@
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-ac#n4r36x!=ct9o&7n*$_=o34zl=2qo%a7vspl84j^9vo1%n18'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['fundacionleirion.com', 'localhost']
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS').split(',')
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -22,18 +27,17 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'auditlog',
     'import_export',
+    'whitenoise.runserver_nostatic'
 ]
 
 CUSTOM_APPS = [
     'apps.common.serverhttp',
     'apps.common.utils',
-    
+
     'apps.project.common.users'
 ]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
-
-AUTH_USER_MODEL = 'users.UserModel'
+INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + CUSTOM_APPS
 
 UTILS_PATH = 'apps.common.utils'
 
@@ -42,6 +46,7 @@ ADMIN_URL = 'l/admin/'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'auditlog.middleware.AuditlogMiddleware',
@@ -74,21 +79,23 @@ TEMPLATES = [
     },
 ]
 
-# print(TEMPLATES[0]['DIRS'])
-
 WSGI_APPLICATION = 'app_core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'CONN_MAX_AGE': 0,
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fundacio16_page',
-        'USER': 'fundacio16_app_core',
-        'PASSWORD': 'E#UV+75E53j#',
-        'HOST': '190.90.160.108',
-        'PORT': 3306,
+        'CONN_MAX_AGE': int(os.getenv('DB_CONN_MAX_AGE')),
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': int(os.getenv('DB_PORT')),
+        'CHARSET': os.getenv('DB_CHARSET'),
+        'ATOMIC_REQUESTS': True
     }
 }
+
+AUTH_USER_MODEL = 'users.UserModel'
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -120,3 +127,26 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+STATIC_ROOT = str(BASE_DIR / 'public' / 'staticfiles')
+
+STATIC_URL = 'public/static/'
+
+STATICFILES_DIRS = [str(BASE_DIR / 'public' / 'static')]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+MEDIA_ROOT = str(BASE_DIR / 'public' / 'media')
+
+MEDIA_URL = "public/media/"
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}

@@ -5,9 +5,20 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.auth import views as auth_views
 
 admin_url = settings.ADMIN_URL
+
 custom_apps = settings.CUSTOM_APPS
 
+utils_path = settings.UTILS_PATH
+
 apps_urls = [path('', include(f'{app}.urls')) for app in custom_apps]
+
+handler400 = f'{utils_path}.views.handler400'
+
+handler403 = f'{utils_path}.views.handler403'
+
+handler404 = f'{utils_path}.views.handler404'
+
+handler500 = f'{utils_path}.views.handler500'
 
 urlpatterns = [
     path(admin_url, admin.site.urls),
