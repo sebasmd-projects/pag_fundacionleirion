@@ -1,22 +1,42 @@
-"""
-URL configuration for app_core project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path, re_path
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.auth import views as auth_views
+
+admin_url = settings.ADMIN_URL
+
+custom_apps = settings.CUSTOM_APPS
+
+utils_path = settings.UTILS_PATH
+
+apps_urls = [path('', include(f'{app}.urls')) for app in custom_apps]
+
+handler400 = f'{utils_path}.views.handler400'
+
+handler403 = f'{utils_path}.views.handler403'
+
+handler404 = f'{utils_path}.views.handler404'
+
+handler500 = f'{utils_path}.views.handler500'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(admin_url, admin.site.urls),
+    re_path(
+        r"^sitemap.xml",
+        sitemap,
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
+    path(
+        "accounts/login/",
+        auth_views.LoginView.as_view()
+    ),
+    path(
+        "accounts/logout/",
+        auth_views.LogoutView.as_view()
+    ),
+    path(
+        '',
+        include(apps_urls)
+    )
 ]
