@@ -15,8 +15,11 @@
 
 {% block main %}
     {% include 'includes/sections/hero.html' %}
-    {% include 'includes/sections/why_us.html' %}
-    {% include 'includes/sections/call_to_action.html' %}
+    
+    {% comment %}
+        {% include 'includes/sections/why_us.html' %}
+        {% include 'includes/sections/call_to_action.html' %}
+    {% endcomment %}
 {% endblock main %}
 
 {% block footer %}
