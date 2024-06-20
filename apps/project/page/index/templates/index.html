@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}INICIO{% endblock title %}
+
+{% block aditional_meta %}
+    <meta name="description" content="Fundación Leirión es una organización mundial que implementa proyectos de desarrollo y transformación social en Latinoamérica, enfocándose en la protección de la infancia y el medio ambiente.">
+    <meta name="keywords" content="organización mundial, proyectos de desarrollo, transformación social, comunidades rurales, comunidades urbanas, Latinoamérica, protección de la infancia, cuidado del medio ambiente, equidad, Fundación Leirión, calidad de vida, objetivos de desarrollo sostenible, vivienda digna, proyectos productivos, educación B-Learning, becas académicas, Nesara, Gesara"/>
+{% endblock aditional_meta %}
+
+{% block body_css %}index-page{% endblock body_css %}
+
+{% block header %}
+    {% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block main %}
+    {% include 'includes/sections/hero.html' %}
+    {% include 'includes/sections/why_us.html' %}
+    {% include 'includes/sections/call_to_action.html' %}
+{% endblock main %}
+
+{% block footer %}
+    {% include 'includes/footer/footer.html' %}
+{% endblock footer %}

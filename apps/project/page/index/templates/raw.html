@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        {% block meta %}{% endblock meta %}
+        <title>{% block title %}{% endblock title %}</title>
+        {% block favicons %}{% endblock favicons %}
+        {% block fonts %}{% endblock fonts %}
+        {% block css %}{% endblock css %}
+        {% block main_css %}{% endblock main_css %}
+    </head>
+    <body class="{% block body_css %}{% endblock body_css %}">
+        {% block header %}{% endblock header %}
+        {% block main %}{% endblock main %}
+        {% block footer %}{% endblock footer %}
+        {% block scroll_top %}{% endblock scroll_top %}
+        {% block js %}{% endblock js %}
+        {% block main_js %}{% endblock main_js %}
+    </body>
+</html>

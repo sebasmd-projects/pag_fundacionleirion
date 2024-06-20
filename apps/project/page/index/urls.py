@@ -1,3 +1,11 @@
 from django.urls import include, path
 
-urlpatterns = []
+from .views import IndexTemplateView
+
+urlpatterns = [
+    path(
+        '',
+        IndexTemplateView.as_view(),
+        name='index'
+    )
+]
