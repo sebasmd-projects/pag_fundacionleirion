@@ -459,7 +459,7 @@ h6 {
 }
 
 .footer .footer-newsletter .newsletter-form {
-  margin-top: 30px;
+  margin-top: 5px;
   padding: 6px 8px;
   position: relative;
   background-color: color-mix(in srgb, var(--background-color), transparent 50%);
@@ -474,7 +474,7 @@ h6 {
   border-color: var(--accent-color);
 }
 
-.footer .footer-newsletter .newsletter-form input[type=email] {
+.footer .footer-newsletter .newsletter-form input, select{
   border: 0;
   padding: 4px;
   width: 100%;
@@ -482,7 +482,7 @@ h6 {
   color: var(--default-color);
 }
 
-.footer .footer-newsletter .newsletter-form input[type=email]:focus-visible {
+.footer .footer-newsletter .newsletter-form input:focus-visible, , select:focus-visible {
   outline: none;
 }
 
@@ -1886,7 +1886,7 @@ section,
   color: var(--contrast-color);
 }
 
-.contact .php-email-form {
+.contact .newsletter-subscribe-form {
   height: 100%;
   padding: 30px;
   border-top: 3px solid var(--accent-color);
@@ -1895,12 +1895,12 @@ section,
 }
 
 @media (max-width: 575px) {
-  .contact .php-email-form {
+  .contact .newsletter-subscribe-form {
     padding: 20px;
   }
 }
 
-.contact .php-email-form .error-message {
+.contact .newsletter-subscribe-form .error-message {
   display: none;
   background: #df1529;
   color: #ffffff;
@@ -1910,7 +1910,7 @@ section,
   font-weight: 600;
 }
 
-.contact .php-email-form .sent-message {
+.contact .newsletter-subscribe-form .sent-message {
   display: none;
   color: #ffffff;
   background: #059652;
@@ -1920,7 +1920,7 @@ section,
   font-weight: 600;
 }
 
-.contact .php-email-form .loading {
+.contact .newsletter-subscribe-form .loading {
   display: none;
   background: var(--background-color);
   text-align: center;
@@ -1928,7 +1928,7 @@ section,
   margin-bottom: 24px;
 }
 
-.contact .php-email-form .loading:before {
+.contact .newsletter-subscribe-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -1940,9 +1940,8 @@ section,
   animation: animate-loading 1s linear infinite;
 }
 
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
+.contact .newsletter-subscribe-form input,
+.contact .newsletter-subscribe-form textarea {
   font-size: 14px;
   padding: 10px 15px;
   box-shadow: none;
@@ -1952,19 +1951,17 @@ section,
   border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
+.contact .newsletter-subscribe-form input:focus,
+.contact .newsletter-subscribe-form textarea:focus {
   border-color: var(--accent-color);
 }
 
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
+.contact .newsletter-subscribe-form input::placeholder,
+.contact .newsletter-subscribe-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .newsletter-subscribe-form button[type=submit] {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 0;
@@ -1973,7 +1970,7 @@ section,
   border-radius: 50px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .newsletter-subscribe-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
 
