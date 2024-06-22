@@ -6,7 +6,11 @@
         <p>
           ¡Recibe las últimas novedades sobre nuestros productos y servicios!
         </p>
-        <form method="post" class="newsletter-subscribe-form" action="{% url 'index:subscribe_newsletter' %}">
+        <form
+          method="post"
+          class="newsletter-subscribe-form"
+          action="{% url 'index:subscribe_newsletter' %}"
+        >
           {% csrf_token %} {{ subscribe_form.non_field_errors }}
           <div class="newsletter-form">{{ subscribe_form.names }}</div>
           <div class="newsletter-form">{{ subscribe_form.email }}</div>

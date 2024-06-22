@@ -1,9 +1,9 @@
 import re
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import get_user_model
 
 from app_core import get_app_from_path
 
@@ -105,3 +105,32 @@ class NewsletterModel(TimeStampedModel):
         db_table = 'apps_project_page_newsletter'
         verbose_name = _('Boletín')
         verbose_name_plural = _('Boletines')
+
+
+class ContactModel(TimeStampedModel):
+    names = models.CharField(
+        _('nombres'),
+        max_length=150
+    )
+
+    email = models.EmailField(
+        _("correo"),
+        max_length=254
+    )
+
+    title = models.CharField(
+        _("título"),
+        max_length=50
+    )
+    
+    message = models.TextField(
+        _("mensaje")
+    )
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        db_table = 'apps_project_page_contact'
+        verbose_name = _('Mensaje | Contáctanos')
+        verbose_name_plural = _('Mensajes | Contáctanos')

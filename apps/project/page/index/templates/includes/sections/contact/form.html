@@ -1,0 +1,16 @@
+<form
+  method="post"
+  class="newsletter-subscribe-form"
+  data-aos="fade-up"
+  data-aos-delay="200"
+  action="{% url 'index:contact' %}"
+>
+  {% csrf_token %} {{contact_form.non_field_errors}}
+  <div class="row gy-4">
+    <div class="col-md-6">{{contact_form.names}}</div>
+    <div class="col-md-6">{{contact_form.email}}</div>
+    <div class="col-md-12">{{contact_form.title}}</div>
+    <div class="col-md-12">{{contact_form.message}}</div>
+    <button type="submit" class="btn btn-outline-success">Enviar</button>
+  </div>
+</form>

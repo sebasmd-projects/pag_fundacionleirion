@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import SubscribeNewsletterFormView, IndexTemplateView
+from .views import SubscribeNewsletterFormView, IndexTemplateView, ContactFormView
 
 app_name = "index"
 
@@ -11,8 +11,13 @@ urlpatterns = [
         name='home'
     ),
     path(
-        'suscripcion/',
+        'boletin/suscripcion/',
         SubscribeNewsletterFormView.as_view(),
         name='subscribe_newsletter'
     ),
+    path(
+        'contact/',
+        ContactFormView.as_view(),
+        name='contact'
+    )
 ]
