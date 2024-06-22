@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TeamConfig(AppConfig):
+class TermsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.project.page.team'
+    name = 'apps.project.page.terms'

@@ -37,16 +37,12 @@ CUSTOM_APPS = [
     'apps.common.serverhttp',
     'apps.common.utils',
 
-    'apps.project.common.conditions',
-    'apps.project.common.terms',
     'apps.project.common.users',
     
-    'apps.project.page.contact',
+    'apps.project.page.conditions',
+    'apps.project.page.terms',
     'apps.project.page.faq',
     'apps.project.page.index',
-    'apps.project.page.portfolio',
-    'apps.project.page.services',
-    'apps.project.page.team',
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + CUSTOM_APPS

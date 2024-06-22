@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ServicesConfig(AppConfig):
+class ConditionsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.project.page.services'
+    name = 'apps.project.page.conditions'

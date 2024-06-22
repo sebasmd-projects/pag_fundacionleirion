@@ -1,32 +1,8 @@
 {% load static %}
 
 <footer id="footer" class="footer">
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>Suscríbete a nuestro boletín</h4>
-            <p>¡Recibe las últimas novedades sobre nuestros productos y servicios!</p>
-            <form method="post" class="newsletter-subscribe-form">
-              {% csrf_token %}
-              {{ form.non_field_errors }}
-              <div class="newsletter-form">
-                {{ form.names }}
-              </div>
-              <div class="newsletter-form">
-                {{ form.email }}
-              </div>
-              <div class="newsletter-form">
-                {{ form.country_code }}
-                {{ form.cell_phone }}
-                <input type="submit" value="Enviar">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    {% include 'includes/footer/boletin.html' %}
+    
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
@@ -49,9 +25,9 @@
         <div class="col-lg-4 col-md-3 footer-links">
           <h4>Enlaces</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">INICIO</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Conócenos</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Servicios</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/#hero">INICIO</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/#why-us">Conócenos</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/#services">Servicios</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Términos y Condiciones</a></li>
           </ul>
         </div>
@@ -75,5 +51,4 @@
         Designed by <a href="https://sebasmoralesd.com">Sebastián Morales</a>
       </div>
     </div>
-
   </footer>
