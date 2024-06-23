@@ -30,7 +30,8 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'auditlog',
     'import_export',
-    'whitenoise.runserver_nostatic'
+    'whitenoise.runserver_nostatic',
+    'django_ckeditor_5'
 ]
 
 CUSTOM_APPS = [
@@ -38,7 +39,7 @@ CUSTOM_APPS = [
     'apps.common.utils',
 
     'apps.project.common.users',
-    
+
     'apps.project.page.terms_conditions',
     'apps.project.page.faq',
     'apps.project.page.index',
@@ -136,7 +137,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
 STATIC_ROOT = str(BASE_DIR / 'public' / 'staticfiles')
 
 STATIC_URL = 'public/static/'
@@ -165,9 +165,59 @@ else:
     EMAIL_USE_SSL = False
     EMAIL_USE_TLS = True
 
-EMAIL_BACKEND=os.getenv('DJANGO_EMAIL_BACKEND')
+EMAIL_BACKEND = os.getenv('DJANGO_EMAIL_BACKEND')
 EMAIL_HOST_USER = os.getenv('DJANGO_EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('DJANGO_EMAIL_HOST_PASSWORD')
 EMAIL_HOST = os.getenv('DJANGO_EMAIL_HOST', 'mail.fundacionleirion.com')
 EMAIL_PORT = int(os.getenv('DJANGO_EMAIL_PORT'))
 DEFAULT_FROM_EMAIL = os.getenv('DJANGO_EMAIL_DEFAULT_FROM_EMAIL')
+
+customColorPalette = [
+    {
+        'color': 'hsl(4, 90%, 58%)',
+        'label': 'Red'
+    },
+    {
+        'color': 'hsl(340, 82%, 52%)',
+        'label': 'Pink'
+    },
+    {
+        'color': 'hsl(291, 64%, 42%)',
+        'label': 'Purple'
+    },
+    {
+        'color': 'hsl(262, 52%, 47%)',
+        'label': 'Deep Purple'
+    },
+    {
+        'color': 'hsl(231, 48%, 48%)',
+        'label': 'Indigo'
+    },
+    {
+        'color': 'hsl(207, 90%, 54%)',
+        'label': 'Blue'
+    },
+]
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            'heading', '|',
+            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'removeFormat', '|',
+            'bold', 'italic', 'underline', 'strikethrough', 'code', 'link', 'subscript', 'superscript', '|',
+            'bulletedList', 'numberedList', 'todoList', '|',
+            'insertImage', 'mediaEmbed', '|',
+            'outdent', 'indent', '|',
+            'blockQuote', 'insertTable', '|',
+            'sourceEditing',
+        ],
+    },
+    'list': {
+        'properties': {
+            'styles': 'true',
+            'startIndex': 'true',
+            'reversed': 'true',
+        }
+    }
+}
+
+CKEDITOR_5_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'

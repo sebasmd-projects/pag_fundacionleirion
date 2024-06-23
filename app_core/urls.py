@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
 
 admin_url = settings.ADMIN_URL
 
@@ -36,7 +37,11 @@ urlpatterns = [
         auth_views.LogoutView.as_view()
     ),
     path(
+        "ckeditor5/",
+        include('django_ckeditor_5.urls')
+    ),
+    path(
         '',
         include(apps_urls)
-    )
-]
+    ),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

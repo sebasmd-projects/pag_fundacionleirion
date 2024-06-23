@@ -3,7 +3,7 @@ from django.contrib import admin
 from django_countries import countries
 from import_export.admin import ImportExportActionModelAdmin
 
-from .models import NewsletterModel, SubscribeNewsletterModel, ContactModel
+from .models import NewsletterModel, SubscribeNewsletterModel, ContactModel, NewsletterTemplateModel
 
 
 class SubscribeNewsletterAdminForm(forms.ModelForm):
@@ -34,6 +34,10 @@ class SubscribeNewsletterAdmin(ImportExportActionModelAdmin):
 
 @admin.register(NewsletterModel)
 class NewsletterAdmin(ImportExportActionModelAdmin):
+    pass
+
+@admin.register(NewsletterTemplateModel)
+class NewsletterTemplateAdmin(ImportExportActionModelAdmin):
     pass
 
 @admin.register(ContactModel)

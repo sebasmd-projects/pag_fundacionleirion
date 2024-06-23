@@ -47,6 +47,14 @@ class UserModel(TimeStampedModel, AbstractUser):
         _("Is cleaner"),
         default=False
     )
+    
+    country_code = CharField(
+        _('código de país'),
+        max_length=10,
+        blank=True,
+        null=True,
+        default='CO'
+    )
 
     def get_age(self):
         return date.today().year - self.birthday.year - (
@@ -66,8 +74,8 @@ class UserModel(TimeStampedModel, AbstractUser):
 
     class Meta:
         db_table = 'apps_project_common_user'
-        verbose_name = _('User')
-        verbose_name_plural = _('Users')
+        verbose_name = _('Usuario')
+        verbose_name_plural = _('Usuarios')
 
 
 auditlog.register(
