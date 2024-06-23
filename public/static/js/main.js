@@ -10,6 +10,19 @@
   "use strict";
 
   /**
+   * Prevent multiple form submissions
+   */
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.querySelector('.newsletter-subscribe-form');
+    var submitButton = document.getElementById('contact-submit-button');
+  
+    form.addEventListener('submit', function () {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando...';
+    });
+  });
+
+  /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
   function toggleScrolled() {
@@ -134,23 +147,6 @@
   document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle').forEach((faqItem) => {
     faqItem.addEventListener('click', () => {
       faqItem.parentNode.classList.toggle('faq-active');
-    });
-  });
-
-  /**
-   * Animate the skills items on reveal
-   */
-  let skillsAnimation = document.querySelectorAll('.skills-animation');
-  skillsAnimation.forEach((item) => {
-    new Waypoint({
-      element: item,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = item.querySelectorAll('.progress .progress-bar');
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
-        });
-      }
     });
   });
 

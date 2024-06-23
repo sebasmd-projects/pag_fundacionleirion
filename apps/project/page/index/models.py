@@ -1,4 +1,5 @@
 import re
+import uuid
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -122,14 +123,19 @@ class ContactModel(TimeStampedModel):
         _("título"),
         max_length=50
     )
-    
+
     message = models.TextField(
         _("mensaje")
     )
-    
+
+    unique_id = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True
+    )
+
     def __str__(self):
         return self.title
-    
+
     class Meta:
         db_table = 'apps_project_page_contact'
         verbose_name = _('Mensaje | Contáctanos')

@@ -1,7 +1,9 @@
+import uuid
+
 from django import forms
 from django_countries import countries
 
-from .models import SubscribeNewsletterModel, ContactModel
+from .models import ContactModel, SubscribeNewsletterModel
 
 
 class SubscribeNewsletterForm(forms.ModelForm):
@@ -66,7 +68,7 @@ class ContactForm(forms.ModelForm):
                 'id': 'contact_names',
                 'maxlength': 150,
                 'placeholder': 'Nombres',
-                'class':'form-control'
+                'class': 'form-control'
             }
         ),
         required=True
@@ -78,7 +80,7 @@ class ContactForm(forms.ModelForm):
                 'id': 'contact_email',
                 'maxlength': 254,
                 'placeholder': 'Correo',
-                'class':'form-control'
+                'class': 'form-control'
             }
         ),
         required=True
@@ -90,7 +92,7 @@ class ContactForm(forms.ModelForm):
                 'id': 'contact_title',
                 'maxlength': 150,
                 'placeholder': 'Título',
-                'class':'form-control'
+                'class': 'form-control'
             }
         ),
         required=True
@@ -101,12 +103,17 @@ class ContactForm(forms.ModelForm):
             attrs={
                 'id': 'contact_message',
                 'placeholder': 'Mensaje',
-                'class':'form-control'
+                'class': 'form-control'
             }
         ),
         required=True
     )
 
+    unique_id = forms.UUIDField(
+        widget=forms.HiddenInput(),
+        initial=uuid.uuid4,
+    )
+
     class Meta:
         model = ContactModel
-        fields = ['names', 'email', 'title', 'message']
+        fields = ['names', 'email', 'title', 'message', 'unique_id']
