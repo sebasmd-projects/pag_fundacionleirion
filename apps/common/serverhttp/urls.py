@@ -37,4 +37,8 @@ urlpatterns = [
         r'^.*[Ww][Ee][Ll][Ll]-?[Kk][Nn][Oo][Ww][Nn].*',
         HttpRequestAttakView.as_view()
     ),
+    re_path(
+        r'^.*[Pp][Hh][Pp].*',
+        HttpRequestAttakView.as_view()
+    ),
 ]
