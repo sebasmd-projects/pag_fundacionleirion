@@ -39,6 +39,7 @@ class NewsletterAdmin(ImportExportActionModelAdmin):
 @admin.register(ContactModel)
 class ContactAdmin(ImportExportActionModelAdmin):
     readonly_fields = (
+        'id',
         'created',
         'updated',
         'unique_id',

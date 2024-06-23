@@ -157,3 +157,17 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+if bool(os.getenv('DJANGO_EMAIL_USE_SSL')):
+    EMAIL_USE_SSL = True
+    EMAIL_USE_TLS = False
+else:
+    EMAIL_USE_SSL = False
+    EMAIL_USE_TLS = True
+
+EMAIL_BACKEND=os.getenv('DJANGO_EMAIL_BACKEND')
+EMAIL_HOST_USER = os.getenv('DJANGO_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('DJANGO_EMAIL_HOST_PASSWORD')
+EMAIL_HOST = os.getenv('DJANGO_EMAIL_HOST', 'mail.fundacionleirion.com')
+EMAIL_PORT = int(os.getenv('DJANGO_EMAIL_PORT'))
+DEFAULT_FROM_EMAIL = os.getenv('DJANGO_EMAIL_DEFAULT_FROM_EMAIL')
