@@ -39,8 +39,7 @@ CUSTOM_APPS = [
 
     'apps.project.common.users',
     
-    'apps.project.page.conditions',
-    'apps.project.page.terms',
+    'apps.project.page.terms_conditions',
     'apps.project.page.faq',
     'apps.project.page.index',
 ]
