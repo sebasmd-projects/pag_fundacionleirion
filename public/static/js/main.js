@@ -14,11 +14,10 @@
    */
   document.addEventListener('DOMContentLoaded', function () {
     var form = document.querySelector('.newsletter-subscribe-form');
-    var submitButton = document.getElementById('contact-submit-button');
-  
+    var submitButton = document.getElementsByName('submit-button')
     form.addEventListener('submit', function () {
       submitButton.disabled = true;
-      submitButton.textContent = 'Enviando...';
+      submitButton.textContent = '...';
     });
   });
 
