@@ -1,11 +1,11 @@
-from django.shortcuts import redirect
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, edit
-from .models import ContactModel
-from .forms import SubscribeNewsletterForm, ContactForm
-from django.core.mail import send_mail
 from django.conf import settings
-from django.urls import reverse
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.urls import reverse, reverse_lazy
+from django.views.generic import TemplateView, edit
+
+from .forms import ContactForm, SubscribeNewsletterForm
+from .models import ContactModel
 
 
 class IndexTemplateView(TemplateView):
@@ -54,14 +54,17 @@ class ContactFormView(edit.FormView):
             'admin:index_contactmodel_change', args=[contact.id])
         admin_url = self.request.build_absolute_uri(admin_link)
         send_mail(
-            subject=f'Nuevo mensaje | CONTACTO | {contact.title}',
+            subject=f'Nuevo mensaje | FORMULARIO DE CONTACTO | {contact.title}',
             message=(
                 f'Se ha recibido un nuevo mensaje,\n'
-                f'Puede verlo en el siguiente enlace: {admin_url}\n\n'
+                f'Puedes verlo en el siguiente enlace: {admin_url}\n\n'
+                f'<b>¡IMPORTANTE!:</b> Por favor no haga click en ningun enlace que no conozca o parezca sospechoso, por la salud de tu computador y de la fundación\n'
                 f'INFORMACIÓN:\n'
                 f'Nombres: {contact.names}\n'
                 f'Titulo: {contact.title}\n'
                 f'Mensaje: \n{contact.message}\n'
+                f'\n\n'
+                f'Responder a: {contact.email}'
             ),
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=['info@fundacionleirion.com'],
