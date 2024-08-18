@@ -65,4 +65,16 @@ urlpatterns = [
         r'^.*[Ss][Ii][Tt][Ee].*',
         HttpRequestAttakView.as_view()
     ),
+    re_path(
+        r'^.*[Oo][Ll][Dd].*',
+        HttpRequestAttakView.as_view()
+    ),
+    re_path(
+        r'^.*[Ss][Hh][Oo][Pp].*',
+        HttpRequestAttakView.as_view()
+    ),
+    re_path(
+        r'^.*[Ww][Pp].*',
+        HttpRequestAttakView.as_view()
+    ),
 ]
