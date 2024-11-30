@@ -50,26 +50,26 @@ class ContactFormView(edit.FormView):
             fail_silently=False
         )
 
-        admin_link = reverse(
-            'admin:index_contactmodel_change', args=[contact.id])
-        admin_url = self.request.build_absolute_uri(admin_link)
-        send_mail(
-            subject=f'Nuevo mensaje | FORMULARIO DE CONTACTO | {contact.title}',
-            message=(
-                f'Se ha recibido un nuevo mensaje,\n'
-                f'Puedes verlo en el siguiente enlace: {admin_url}\n\n'
-                f'<b>¡IMPORTANTE!:</b> Por favor no haga click en ningun enlace que no conozca o parezca sospechoso, por la salud de tu computador y de la fundación\n'
-                f'INFORMACIÓN:\n'
-                f'Nombres: {contact.names}\n'
-                f'Titulo: {contact.title}\n'
-                f'Mensaje: \n{contact.message}\n'
-                f'\n\n'
-                f'Responder a: {contact.email}'
-            ),
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=['info@fundacionleirion.com'],
-            fail_silently=False
-        )
+        # admin_link = reverse(
+        #     'admin:index_contactmodel_change', args=[contact.id])
+        # admin_url = self.request.build_absolute_uri(admin_link)
+        # send_mail(
+        #     subject=f'Nuevo mensaje | FORMULARIO DE CONTACTO | {contact.title}',
+        #     message=(
+        #         f'Se ha recibido un nuevo mensaje,\n'
+        #         f'Puedes verlo en el siguiente enlace: {admin_url}\n\n'
+        #         f'<b>¡IMPORTANTE!:</b> Por favor no haga click en ningun enlace que no conozca o parezca sospechoso, por la salud de tu computador y de la fundación\n'
+        #         f'INFORMACIÓN:\n'
+        #         f'Nombres: {contact.names}\n'
+        #         f'Titulo: {contact.title}\n'
+        #         f'Mensaje: \n{contact.message}\n'
+        #         f'\n\n'
+        #         f'Responder a: {contact.email}'
+        #     ),
+        #     from_email=settings.DEFAULT_FROM_EMAIL,
+        #     recipient_list=['info@fundacionleirion.com'],
+        #     fail_silently=False
+        # )
 
         return super().form_valid(form)
 
